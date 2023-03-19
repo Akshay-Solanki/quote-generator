@@ -4,13 +4,12 @@ const author = document.getElementById('author')
 const quoteButton = document.getElementById('quote-button')
 
 async function loadQuotes(){
-  const proxy = 'https://cors-anywhere.herokuapp.com/';
-  const response = await fetch(proxy + 'http://zenquotes.io/api/random')
-  const quote = await response.json()
-  console.log(quote)
-  text.textContent = quote[0].q;
-  author.textContent = quote[0].a;
+  const quote = localQuotes[Math.floor(localQuotes.length * Math.random())]
+  text.textContent = quote.text;
+  author.textContent = quote.author || 'Unknown';
 }
+
+loadQuotes()
 
 quoteButton.addEventListener('click', function() {
   loadQuotes();
